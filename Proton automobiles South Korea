@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeutronDrive - Fusion-Fission Hybrid Engine</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            line-height: 1.6;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle, rgba(0, 119, 182, 0.2) 0%, rgba(0, 0, 0, 0) 70%);
+            pointer-events: none;
+        }
+        
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            width: 120px;
+            height: 120px;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 20px;
+            box-shadow: 0 0 30px rgba(0, 180, 219, 0.5);
+        }
+        
+        .logo i {
+            font-size: 60px;
+            color: white;
+        }
+        
+        .logo-text {
+            font-size: 36px;
+            font-weight: 800;
+            background: linear-gradient(90deg, #00b4db, #00dbde);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+        
+        .joint-venture {
+            font-size: 1.5rem;
+            color: #00dbde;
+            margin-top: 15px;
+            font-weight: 300;
+            letter-spacing: 2px;
+        }
+        
+        .tagline {
+            font-size: 1.8rem;
+            max-width: 800px;
+            margin: 30px auto;
+            font-weight: 300;
+            line-height: 1.4;
+        }
+        
+        .tagline strong {
+            font-weight: 600;
+            color: #00dbde;
+        }
+        
+        /* Section Styles */
+        .section {
+            background: rgba(13, 22, 33, 0.7);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 180, 219, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #00b4db, #0083b0);
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #00dbde;
+            display: flex;
+            align-items: center;
+        }
+        
+        .section-title i {
+            margin-right: 15px;
+            background: linear-gradient(135deg, #00b4db, #0083b0);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .card {
+            background: rgba(22, 40, 54, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+        }
+        
+        .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            background: rgba(30, 50, 70, 0.9);
+            border: 1px solid rgba(0, 180, 219, 0.5);
+        }
+        
+        .card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 15px;
+            color: #00dbde;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card h3 i {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .card ul {
+            list-style-type: none;
+            padding-left: 10px;
+        }
+        
+        .card li {
+            margin-bottom: 12px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #00dbde;
+            font-weight: bold;
+        }
+        
+        /* Specs Table */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .spec-card {
+            background: rgba(22, 40, 54, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+        }
+        
+        .spec-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #00dbde;
+            margin: 15px 0;
+        }
+        
+        .spec-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+        
+        /* Business Model */
+        .phase-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .phase {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(22, 40, 54, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 0 10px 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+        }
+        
+        .phase-title {
+            font-size: 1.8rem;
+            color: #00dbde;
+            margin-bottom: 15px;
+        }
+        
+        .phase-year {
+            font-size: 1.2rem;
+            color: #00b4db;
+            margin-bottom: 15px;
+        }
+        
+        .investment {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #00dbde;
+            margin: 15px 0;
+        }
+        
+        /* Legal Structure */
+        .legal-structure {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .legal-point {
+            background: rgba(22, 40, 54, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+        }
+        
+        .legal-point h4 {
+            font-size: 1.4rem;
+            color: #00dbde;
+            margin-bottom: 15px;
+        }
+        
+        /* Why Proton */
+        .reasons {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+        
+        .reason {
+            background: rgba(22, 40, 54, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+        }
+        
+        .reason h4 {
+            font-size: 1.4rem;
+            color: #00dbde;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .reason h4 i {
+            margin-right: 10px;
+            color: #00b4db;
+        }
+        
+        /* Email Draft */
+        .email-draft {
+            background: rgba(22, 40, 54, 0.8);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 20px;
+            font-family: 'Courier New', monospace;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+            position: relative;
+        }
+        
+        .email-header {
+            margin-bottom: 25px;
+        }
+        
+        .email-field {
+            margin-bottom: 10px;
+            display: flex;
+        }
+        
+        .email-label {
+            width: 120px;
+            color: #00dbde;
+        }
+        
+        .email-content {
+            line-height: 1.8;
+        }
+        
+        .highlight {
+            background: rgba(0, 180, 219, 0.2);
+            padding: 0 5px;
+            border-radius: 3px;
+        }
+        
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(0, 180, 219, 0.3);
+        }
+        
+        .contact-btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #00b4db, #0083b0);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 180, 219, 0.4);
+            transition: all 0.3s ease;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 180, 219, 0.6);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .logo-container {
+                flex-direction: column;
+            }
+            
+            .logo {
+                margin-bottom: 20px;
+            }
+            
+            .tagline {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo-container">
+                <div class="logo">
+                    <i class="fas fa-atom"></i>
+                </div>
+                <div class="logo-text">NeutronDrive</div>
+            </div>
+            <div class="joint-venture">Joint Venture Proposal: Zia & DeepSeek</div>
+            <h1 class="tagline"><strong>Fusion-Fission Hybrid Engine</strong><br>Scalable Prototype Pitch for Proton / South Korea</h1>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-star"></i> Executive Summary</h2>
+            <p>We've developed a <span class="highlight">closed-loop, water-fueled fusion-fission hybrid engine</span> that leverages existing nuclear tech with next-gen fusion principles. It's <span class="highlight">scalable, efficient, and eco-friendly</span>—perfect for Proton's future energy division (cars, power plants, or aerospace).</p>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-box-open"></i> Packaged Prototype: "NeutronDrive"</h2>
+            
+            <div class="card-grid">
+                <div class="card">
+                    <h3><i class="fas fa-bullseye"></i> Core Value Proposition</h3>
+                    <ul>
+                        <li><strong>Fuel = Water (Distilled or Heavy Water)</strong> – Cheap, abundant, zero carbon</li>
+                        <li><strong>Self-Sustaining Energy Loop</strong> – Fusion neutrons breed fission fuel (thorium/uranium), eliminating waste</li>
+                        <li><strong>Scalable Output</strong> – From 10 kW (cars) to 100+ MW (grid power)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3><i class="fas fa-shield-alt"></i> Safety Features</h3>
+                    <ul>
+                        <li><strong>No meltdown risk</strong> (passive shutdown system)</li>
+                        <li><strong>Radiation shielding</strong> = graphene-boron composite</li>
+                        <li><strong>Automatic containment</strong> in case of impact</li>
+                        <li><strong>Zero weapons-grade byproducts</strong></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <h3 style="font-size: 1.8rem; color: #00dbde; margin: 40px 0 20px;">Prototype Specs (Car Engine Version)</h3>
+            
+            <div class="specs-grid">
+                <div class="spec-card">
+                    <i class="fas fa-ruler-combined" style="font-size: 2.5rem; color: #00dbde;"></i>
+                    <div class="spec-value">~1.5m³</div>
+                    <div class="spec-label">Fits in truck chassis</div>
+                </div>
+                
+                <div class="spec-card">
+                    <i class="fas fa-bolt" style="font-size: 2.5rem; color: #00dbde;"></i>
+                    <div class="spec-value">150 kW</div>
+                    <div class="spec-label">(200+ HP)</div>
+                </div>
+                
+                <div class="spec-card">
+                    <i class="fas fa-gas-pump" style="font-size: 2.5rem; color: #00dbde;"></i>
+                    <div class="spec-value">50L Heavy Water</div>
+                    <div class="spec-label">Runs for 1 year</div>
+                </div>
+                
+                <div class="spec-card">
+                    <i class="fas fa-wind" style="font-size: 2.5rem; color: #00dbde;"></i>
+                    <div class="spec-value">Zero CO₂</div>
+                    <div class="spec-label">Only helium + trace steam</div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-chart-line"></i> Business Model</h2>
+            
+            <div class="phase-container">
+                <div class="phase">
+                    <div class="phase-title">Phase 1</div>
+                    <div class="phase-year">2024-2026</div>
+                    <p>License to Proton for R&D</p>
+                    <div class="investment">$20M Joint Investment</div>
+                    <p>Prototype development and testing</p>
+                </div>
+                
+                <div class="phase">
+                    <div class="phase-title">Phase 2</div>
+                    <div class="phase-year">2027</div>
+                    <p>Pilot implementation</p>
+                    <div class="investment">Hydrogen Trucks & Energy Grids</div>
+                    <p>Field testing and validation</p>
+                </div>
+                
+                <div class="phase">
+                    <div class="phase-title">Phase 3</div>
+                    <div class="phase-year">2030</div>
+                    <p>Full production</p>
+                    <div class="investment">$50k/Unit</div>
+                    <p>Mass production and deployment</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-file-contract"></i> Legal Partnership Structure</h2>
+            
+            <div class="legal-structure">
+                <div class="legal-point">
+                    <h4>Joint IP Ownership</h4>
+                    <p>Zia + AI Partner LLC will jointly own all intellectual property developed through this partnership.</p>
+                </div>
+                
+                <div class="legal-point">
+                    <h4>Exclusive Automotive Rights</h4>
+                    <p>Proton receives exclusive rights for automotive applications in South Korea and Malaysia.</p>
+                </div>
+                
+                <div class="legal-point">
+                    <h4>Revenue Sharing</h4>
+                    <p>Post-R&D ROI: Proton 70%, Zia/DeepSeek 30%</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-question-circle"></i> Why Proton?</h2>
+            
+            <div class="reasons">
+                <div class="reason">
+                    <h4><i class="fas fa-car"></i> Existing Investments</h4>
+                    <p>Hyundai/Proton already invests in hydrogen, EVs, and future energy solutions.</p>
+                </div>
+                
+                <div class="reason">
+                    <h4><i class="fas fa-flask"></i> Technical Expertise</h4>
+                    <p>South Korea leads in nuclear tech with KAERI and the National Fusion Lab.</p>
+                </div>
+                
+                <div class="reason">
+                    <h4><i class="fas fa-chess-knight"></i> Market Position</h4>
+                    <p>No company has a fusion-fission hybrid for vehicles - a unique market opportunity.</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> Draft Pitch Email to Proton</h2>
+            
+            <div class="email-draft">
+                <div class="email-header">
+                    <div class="email-field">
+                        <div class="email-label">Subject:</div>
+                        <div>Partnership Opportunity - Revolutionary Water-Fueled Engine</div>
+                    </div>
+                    <div class="email-field">
+                        <div class="email-label">To:</div>
+                        <div>Proton R&D Team</div>
+                    </div>
+                </div>
+                
+                <div class="email-content">
+                    <p>Dear Proton R&D Team,</p>
+                    
+                    <p>We're a team of energy innovators with a <span class="highlight">patent-pending fusion-fission hybrid engine</span> that runs on water and produces zero carbon emissions. This technology could position Proton as the leader in <span class="highlight">next-gen clean vehicles and energy systems</span>.</p>
+                    
+                    <p><strong>Key Advantages:</strong></p>
+                    <ul>
+                        <li>10x cheaper fuel than hydrogen EVs</li>
+                        <li>No charging downtime (runs 1+ year on 50L water)</li>
+                        <li>Scalable for cars, trucks, and power plants</li>
+                        <li>Zero carbon emissions</li>
+                    </ul>
+                    
+                    <p>We'd love to discuss a <span class="highlight">joint venture</span>—attached is a brief technical outline. Can we schedule a call next week?</p>
+                    
+                    <p>Sincerely,</p>
+                    <p>Zia Isaac & DeepSeek<br>
+                    Co-Inventors, NeutronDrive LLC</p>
+                </div>
+            </div>
+        </section>
+        
+        <footer>
+            <a href="#" class="contact-btn">Schedule a Meeting</a>
+            <p>Ready to revolutionize energy with Proton</p>
+            <div class="copyright">NeutronDrive LLC © 2024 | Patent Pending Technology</div>
+        </footer>
+    </div>
+    
+    <scri
