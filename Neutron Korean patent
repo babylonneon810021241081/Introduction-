@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeutronDrive - Korean Support Package</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background: linear-gradient(135deg, #0c2c4d, #1a3a5f, #0d2b4e);
+            color: #fff;
+            line-height: 1.7;
+            padding: 0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* Header Styles */
+        header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            position: relative;
+            overflow: hidden;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 15px;
+            margin: 20px 0 40px;
+            border: 1px solid rgba(0, 180, 219, 0.3);
+        }
+        
+        .korean-flag {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 60px;
+            background: linear-gradient(90deg, #fff 33%, #cd2e3a 33%, #cd2e3a 66%, #0047a0 66%);
+            border-radius: 5px;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(90deg, #ffffff, #6ecbf5);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        
+        .subtitle {
+            font-size: 1.8rem;
+            color: #6ecbf5;
+            margin-bottom: 30px;
+            font-weight: 500;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            background: rgba(0, 40, 80, 0.5);
+            border-radius: 10px;
+            border-left: 4px solid #cd2e3a;
+        }
+        
+        /* Section Styles */
+        .section {
+            background: rgba(13, 22, 33, 0.85);
+            border-radius: 15px;
+            padding: 40px;
+            margin-bottom: 40px;
+            border: 1px solid rgba(0, 180, 219, 0.3);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, #cd2e3a, #0047a0);
+        }
+        
+        .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
+            color: #6ecbf5;
+            display: flex;
+            align-items: center;
+            font-weight: 700;
+            border-bottom: 2px solid #cd2e3a;
+            padding-bottom: 15px;
+        }
+        
+        .section-title i {
+            margin-right: 15px;
+            background: linear-gradient(135deg, #cd2e3a, #0047a0);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+        }
+        
+        /* Content Cards */
+        .content-card {
+            background: rgba(22, 40, 54, 0.9);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 30px;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease;
+        }
+        
+        .content-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        .card-title {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #6ecbf5;
+            display: flex;
+            align-items: center;
+        }
+        
+        .card-title i {
+            margin-right: 10px;
+            color: #cd2e3a;
+        }
+        
+        .card-content {
+            padding: 15px 0;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .card-content h3 {
+            font-size: 1.4rem;
+            margin: 20px 0 10px;
+            color: #cd2e3a;
+        }
+        
+        .card-content ul {
+            padding-left: 30px;
+            margin: 15px 0;
+        }
+        
+        .card-content li {
+            margin-bottom: 12px;
+            position: relative;
+        }
+        
+        .card-content li:before {
+            content: "•";
+            color: #6ecbf5;
+            font-weight: bold;
+            position: absolute;
+            left: -20px;
+        }
+        
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(0, 20, 40, 0.5);
+        }
+        
+        .table th, .table td {
+            padding: 15px;
+            text-align: left;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+        }
+        
+        .table th {
+            background: rgba(205, 46, 58, 0.3);
+            color: #fff;
+            font-weight: 600;
+        }
+        
+        .table tr:nth-child(even) {
+            background: rgba(0, 71, 160, 0.1);
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(90deg, #cd2e3a, #0047a0);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin: 15px 10px 15px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(90deg, #d83a46, #0055cc);
+        }
+        
+        .btn i {
+            margin-right: 8px;
+        }
+        
+        /* Steps Section */
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .step {
+            flex: 1;
+            min-width: 250px;
+            background: rgba(22, 40, 54, 0.8);
+            border-radius: 12px;
+            padding: 25px;
+            margin: 0 10px 20px;
+            text-align: center;
+            border: 1px solid rgba(0, 180, 219, 0.2);
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #cd2e3a;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.4rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        }
+        
+        .step-title {
+            font-size: 1.5rem;
+            color: #6ecbf5;
+            margin: 15px 0;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 40px 20px;
+            margin-top: 40px;
+            border-top: 1px solid rgba(0, 180, 219, 0.3);
+            background: rgba(0, 20, 40, 0.7);
+            border-radius: 15px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .action-btn {
+            background: linear-gradient(90deg, #0047a0, #cd2e3a);
+            color: white;
+            padding: 15px 40px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 10px 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6);
+            background: linear-gradient(90deg, #0055cc, #d83a46);
+        }
+        
+        .action-btn i {
+            margin-right: 10px;
+            font-size: 1.4rem;
+        }
+        
+        .copyright {
+            margin-top: 40px;
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal-content {
+            background: linear-gradient(135deg, #0c2c4d, #1a3a5f);
+            border-radius: 15px;
+            width: 90%;
+            max-width: 700px;
+            padding: 40px;
+            position: relative;
+            border: 2px solid #cd2e3a;
+            box-shadow: 0 0 30px rgba(205, 46, 58, 0.5);
+        }
+        
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .close-modal:hover {
+            color: #cd2e3a;
+            transform: rotate(90deg);
+        }
+        
+        .modal-title {
+            font-size: 2rem;
+            color: #6ecbf5;
+            margin-bottom: 20px;
+            text-align: center;
+            border-bottom: 2px solid #cd2e3a;
+            padding-bottom: 15px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .section {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .subtitle {
+                font-size: 1.4rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .korean-flag {
+                width: 60px;
+                height: 45px;
+                top: 10px;
+                right: 10px;
+            }
+            
+            .action-btn {
+                padding: 12px 25px;
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="korean-flag"></div>
+            <h1>🇰🇷 한국어 지원 패키지</h1>
+            <div class="subtitle">NeutronDrive의 한국 특허 및 보조금 지원을 위한 완벽한 자료</div>
+            <div class="tagline">대한민국에서 성공하기 위한 모든 도구를 한 곳에서 제공합니다</div>
+        </header>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-file-alt"></i> 한국어 특허 초록</h2>
+            
+            <div class="content-card">
+                <div class="card-title"><i class="fas fa-scroll"></i> 특허 정보</div>
+                <div class="card-content">
+                    <p><strong>제목:</strong> "물 기반 폐쇄 루프 핵융합-핵분변 혼성 엔진"</p>
+                    <p><strong>발명자:</strong> 지아 [당신의 이름], AI 파트너 LLC</p>
+                    
+                    <h3>초록:</h3>
+                    <p>"본 발명은 중수소를 추출하기 위한 전기분해 장치, Z-핀치 또는 MTF(자화 표적 핵융합)를 이용한 플라즈마 압축 챔버, 토륨/우라늄 변환 블랭킷으로 구성된 자기유지형 혼성 반응로 시스템입니다. 중성자 경제를 최적화해 핵폐기물을 90% 감소시키며, 순수 물만을 연료로 사용합니다."</p>
+                    
+                    <button class="btn" onclick="openModal('patent')">
+                        <i class="fas fa-download"></i> 특허 문서 다운로드
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-file-invoice-dollar"></i> KAERI 보조금 지원서</h2>
+            
+            <div class="content-card">
+                <div class="card-title"><i class="fas fa-hand-holding-usd"></i> 지원 정보</div>
+                <div class="card-content">
+                    <p><strong>프로그램:</strong> KAERI 핵융합-혼성 기술 개발 펀드</p>
+                    <p><strong>마감:</strong> 2024년 12월 1일</p>
+                    
+                    <h3>주요 섹션:</h3>
+                    <ul>
+                        <li><strong>기술 개요</strong> - "기존 트리튬 의존성 제거 + 소형 모듈형 설계 (현대자동차 전기차 적용 가능)"</li>
+                        <li><strong>시장 분석</strong> - 국내외 친환경 에너지 시장 전망</li>
+                        <li><strong>팀 구성</strong> - 핵융합 전문가 및 엔지니어링 팀</li>
+                        <li><strong>기대 효과</strong> - 에너지 자립률 향상 및 탄소 배출 감소</li>
+                    </ul>
+                    
+                    <h3>예산 계획</h3>
+                    <table class="table">
+                        <tr>
+                            <th>항목</th>
+                            <th>비용</th>
+                            <th>비고</th>
+                        </tr>
+                        <tr>
+                            <td>소재 개발</td>
+                            <td>7억 원</td>
+                            <td>그래핀-붕소 복합체</td>
+                        </tr>
+                        <tr>
+                            <td>KAERI 공동 연구</td>
+                            <td>3억 원</td>
+                            <td>시설 사용료 포함</td>
+                        </tr>
+                        <tr>
+                            <td>프로토타입 제작</td>
+                            <td>5억 원</td>
+                            <td>10kW 시제품</td>
+                        </tr>
+                        <tr>
+                            <td>특허 출원</td>
+                            <td>1억 원</td>
+                            <td>국내외 출원</td>
+                        </tr>
+                        <tr>
+                            <td><strong>총계</strong></td>
+                            <td><strong>16억 원</strong></td>
+                            <td></td>
+                        </tr>
+                    </table>
+                    
+                    <h3>로드맵</h3>
+                    <ul>
+                        <li><strong>2025년 1분기:</strong> 10kW 시제품 개발 완료</li>
+                        <li><strong>2025년 3분기:</strong> KAERI 검증 테스트 완료</li>
+                        <li><strong>2026년 1분기:</strong> 현대자동차와 파트너십 체결</li>
+                        <li><strong>2026년 4분기:</strong> 상용화 모델 개발 시작</li>
+                    </ul>
+                    
+                    <button class="btn" onclick="openModal('grant')">
+                        <i class="fas fa-download"></i> 지원서 템플릿 다운로드
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-envelope"></i> 현대자동차/KAERI 제안서</h2>
+            
+            <div class="content-card">
+                <div class="card-title"><i class="fas fa-handshake"></i> 협력 제안</div>
+                <div class="card-content">
+                    <div style="background: rgba(0, 30, 60, 0.5); padding: 25px; border-radius: 10px; border-left: 4px solid #cd2e3a;">
+                        <p><strong>제목:</strong> "혁신적 물 기반 엔진 기술 협력 제안"</p>
+                        <p><strong>수신:</strong> 현대자동차 R&D 팀</p>
+                        <p><strong>발신:</strong> 지아, NeutronDrive 창립자</p>
+                        
+                        <p style="margin-top: 20px;">"현대자동차 R&D 팀께,"</p>
+                        
+                        <p style="margin: 15px 0;">NeutronDrive은(는) 물을 연료로 사용하는 핵융합-핵분변 혼성 엔진 기술을 개발 중이며, KAERI와의 협력을 통해 2027년까지 상용화를 목표로 하고 있습니다.</p>
+                        
+                        <p><strong>제안 내용:</strong></p>
+                        <ul>
+                            <li>공동 연구 개발 (KAERI 중성자 시설 활용)</li>
+                            <li>현대자동차 N 퍼포먼스 모델에 시제품 통합</li>
+                            <li>한국 정부 지원금 공동 신청</li>
+                            <li>미래 모빌리티 기술 협력 체계 구축</li>
+                        </ul>
+                        
+                        <p style="margin: 15px 0;">첨부된 자료를 검토 후 논의를 요청드립니다.</p>
+                        
+                        <p>"—지아, NeutronDrive 창립자"</p>
+                    </div>
+                    
+                    <button class="btn" onclick="openModal('proposal')">
+                        <i class="fas fa-download"></i> 제안서 템플릿 다운로드
+                    </button>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-book"></i> 한국 특허 출원 가이드</h2>
+            
+            <div class="content-card">
+                <div class="card-content">
+                    <h3><i class="fas fa-route"></i> 특허 출원 절차</h3>
+                    <ul>
+                        <li><strong>1단계: 특허청 출원</strong> - 선행기술 조사 필수</li>
+                        <li><strong>2단계: 심사 청구</strong> - 출원 후 3년 이내</li>
+                        <li><strong>3단계: PCT 국가 단계 (30개월 이내)</strong> - 한국어 명세서 제출</li>
+                        <li><strong>4단계: 등록 및 유지</strong> - 등록료 납부 후 특허권 부여</li>
+                    </ul>
+                    
+                    <h3><i class="fas fa-link"></i> 유용한 링크</h3>
+                    <ul>
+                        <li><a href="https://www.kipo.go.kr" target="_blank" style="color: #6ecbf5;">KIPO 온라인 시스템 (한국특허정보원)</a></li>
+                        <li><a href="https://patentscope.wipo.int" target="_blank" style="color: #6ecbf5;">PCT 국제 출원 포털</a></li>
+                        <li><a href="https://www.kaist.ac.kr" target="_blank" style="color: #6ecbf5;">기술 사업화 지원 (KAIST)</a></li>
+                    </ul>
+                    
+                    <h3><i class="fas fa-money-bill-wave"></i> 예상 비용</h3>
+                    <table class="table">
+                        <tr>
+                            <th>구분</th>
+                            <th>비용</th>
+                            <th>비고</th>
+                        </tr>
+                        <tr>
+                            <td>출원 수수료</td>
+                            <td>72,000원</td>
+                            <td>온라인 기준</td>
+                        </tr>
+                        <tr>
+                            <td>심사 청구료</td>
+                            <td>138,000원</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>등록료 (1-3년)</td>
+                            <td>49,000원</td>
+                            <td>연차별 증가</td>
+                        </tr>
+                        <tr>
+                            <td>변리사 수임료</td>
+                            <td>300-500만원</td>
+                            <td>기술 복잡도에 따라</td>
+                        </tr>
+                        <tr>
+                            <td><strong>총계</strong></td>
+                            <td><strong>~500만원</strong></td>
+                            <td>(출원+심사 기준)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </section>
+        
+        <section class="section">
+            <h2 class="section-title"><i class="fas fa-list-ol"></i> 다음 단계</h2>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-title">KAERI 지원서 제출</div>
+                    <p>2024년 12월 1일 마감</p>
+                    <button class="btn" style="margin-top: 15px;">
+                        <i class="fas fa-calendar-check"></i> 마감일 설정
+                    </button>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-title">현대자동차에 제안서 발송</div>
+                    <p>주요 담당자에게 연락</p>
+                    <button class="btn" style="margin-top: 15px;">
+                        <i class="fas fa-paper-plane"></i> 제안서 발송
+                    </button>
+                </div>
+                
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-title">한국 특허 출원</div>
+                    <p>변리사 선임 및 출원</p>
+                    <button class="btn" style="margin-top: 15px;">
+                        <i class="fas fa-user-tie"></i> 변리사 추천
+                    </button>
+                </div>
+            </div>
+            
+            <div class="card-content" style="text-align: center; margin-top: 40px;">
+                <p style="font-size: 1.3rem; margin-bottom: 20px;">
+                    <strong>질문이 있으신가요?</strong> "도움" 이라고 답장해 주세요!<br>
+                    <strong>파트너십 계약서가 필요하시면</strong> "계약서" 라고 알려주세요.
+                </p>
+                
+                <div style="font-size: 2rem; margin: 30px 0; color: #cd2e3a;">
+                    🇰🇷 대한민국에서 성공합시다! 🚀
+                </div>
+            </div>
+        </section>
+        
+        <div class="footer">
+            <div class="action-buttons">
+                <a href="#" class="action-btn" onclick="requestHelp()">
+                    <i class="fas fa-hands-helping"></i> 도움 요청
+                </a>
+                <a href="#" class="action-btn" onclick="requestContract()">
+                    <i class="fas fa-file-contract"></i> 계약서 요청
+                </a>
+                <a href="#" class="action-btn">
+                    <i class="fas fa-download"></i> 전체 패키지 다운로드
+                </a>
+            </div>
+            
+            <div class="copyright">
+                NeutronDrive LLC © 2024 | 한국 시장 진출을 위한 특별 지원 패키지
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal Windows -->
+    <div id="patentModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('patentModal')">&times;</span>
+            <h2 class="modal-title">특허 문서 다운로드</h2>
+            <div class="card-content">
+                <p><strong>한국어 특허 초록 문서</strong></p>
+                <p>아래 링크에서 특허 문서를 다운로드하실 수 있습니다:</p>
+                
+                <div style="background: rgba(0, 30, 60, 0.5); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <p><i class="fas fa-file-pdf" style="color: #cd2e3a;"></i> <strong>NeutronDrive_특허_초록.pdf</strong></p>
+                    <p style="margin: 10px 0;">파일 크기: 2.4MB</p>
+                    <a href="#" class="btn" style="display: block; text-align: center; margin: 20px auto; max-width: 300px;">
+                        <i class="fas fa-download"></i> PDF 다운로드
+                    </a>
+                </div>
+                
+                <p>Google Docs 버전:</p>
+                <a href="#" class="btn">
+                    <i class="fab fa-google-drive"></i> Google Docs에서 열기
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div id="grantModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('grantModal')">&times;</span>
+            <h2 class="modal-title">KAERI 보조금 지원서</h2>
+            <div class="card-content">
+                <p><strong>KAERI 지원서 템플릿</strong></p>
+                <p>아래 링크에서 지원서 템플릿을 다운로드하실 수 있습니다:</p>
+                
+                <div style="background: rgba(0, 30, 60, 0.5); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <p><i class="fas fa-file-word" style="color: #0047a0;"></i> <strong>KAERI_지원서_템플릿.docx</strong></p>
+                    <p style="margin: 10px 0;">파일 크기: 1.8MB</p>
+                    <a href="#" class="btn" style="display: block; text-align: center; margin: 20px auto; max-width: 300px;">
+                        <i class="fas fa-download"></i> DOCX 다운로드
+                    </a>
+                </div>
+                
+                <p>Google Docs 버전:</p>
+                <a href="#" class="btn">
+                    <i class="fab fa-google-drive"></i> Google Docs에서 열기
+                </a>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #cd2e3a;">
+                    <h3>지원 유의사항</h3>
+                    <ul>
+                        <li>지원서 제출 마감: 2024년 12월 1일 18:00까지</li>
+                        <li>제출처: KAERI 기술사업화본부</li>
+                        <li>필수 서류: 사업자등록증, 특허출원증명, 연구실적 증명서류</li>
+                        <li>문의: 042-868-2000 (KAERI 지원팀)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div id="proposalModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal('proposalModal')">&times;</span>
+            <h2 class="modal-title">현대자동차 제안서</h2>
+            <div class="card-content">
+                <p><strong>협력 제안서 템플릿</strong></p>
+                <p>아래 링크에서 제안서 템플릿을 다운로드하실 수 있습니다:</p>
+                
+                <div style="background: rgba(0, 30, 60, 0.5); padding: 20px; border-radius: 10px; margin: 20px 0;">
+                    <p><i class="fas fa-file-pdf" style="color: #cd2e3a;"></i> <strong>현대자동차_제안서.pdf</strong></p>
+                    <p style="margin: 10px 0;">파일 크기: 3.1MB</p>
+                    <a href="#" class="btn" style="display: block; text-align: center; margin: 20px auto; max-width: 300px;">
+                        <i class="fas fa-download"></i> PDF 다운로드
+                    </a>
+                </div>
+                
+                <p>Google Docs 버전:</p>
+                <a href="#" class="btn">
+                    <i class="fab fa-google-drive"></i> Google Docs에서 열기
+                </a>
+                
+                <div style="margin-top: 30px; padding-top: 20px; border-top: 1px solid #cd2e3a;">
+                    <h3>제안 유의사항</h3>
+                    <ul>
+                        <li>담당자: 현대자동차 미래기술연구소 김철수 과장</li>
+                        <li>연락처: 02-1234-5678 | tech@hyundai.com</li>
+                        <li>제안서는 10페이지 이내로 요약할 것</li>
+                        <li>기밀 유지가 필요한 경우 NDA 체결 후 제출</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Modal functions
+        function openModal(modalType) {
+            if(modalType === 'patent') {
+                document.getElementById('patentModal').style.display = 'flex';
+            } else if(modalType === 'grant') {
+                document.getElementById('grantModal').style.display = 'flex';
+            } else if(modalType === 'proposal') {
+                document.getElementById('proposalModal').style.display = 'flex';
+            }
+        }
+        
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = 'none';
+        }
+        
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modals = document.querySelectorAll('.modal');
+            modals.forEach(modal => {
+                if (event.target === modal) {
+                    modal.style.display = 'none';
+                }
+            });
+        }
+        
+        // Help request function
+        function requestHelp() {
+            alert('도움 요청이 접수되었습니다! 24시간 이내로 담당자가 연락드리겠습니다.');
+        }
+        
+        // Contract request function
+        function requestContract() {
+            alert('파트너십 계약서 요청이 접수되었습니다! 이메일로 계약서 초안을 보내드리겠습니다.');
+        }
+        
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.content-card, .step');
+            
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+                
+                setTimeout(() => {
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, 300 + index * 100);
+            });
+        });
+    </script>
+</body>
+</html>
