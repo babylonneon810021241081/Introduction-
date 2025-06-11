@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Name | GitHub Profile</title>
+    <title> Zia Isaac 510-703-3498 RevGenZIsaac@yahoo.com| GitHub Profile</title>
     <style>
         * {
             margin: 0;
